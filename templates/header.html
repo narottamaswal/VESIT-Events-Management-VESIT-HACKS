@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block content %}
+<header id="hdesign"  >
+
+           <nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg navbar-dark" style=" background-color: #F8F9FA; ">
+               <div class="container">
+                   <a class="navbar-brand" href="index.html"><img src="{% static 'images/navlogo.png'%}" alt="vesit" height="60"></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar navbar-nav end" >
+       <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/events"><b>Events</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/login/"><b>Login</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/register/"><b>Register</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href=""><b>Contact Us</b></a>
+      </li>
+      </ul>
+  </div></div>
+      </nav>
+      </header>
+
+{% endblock content %}

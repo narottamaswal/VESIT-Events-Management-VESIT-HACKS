@@ -1,0 +1,80 @@
+{% load static %}
+<html>
+    <head>
+        <title>Event Details</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+ <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/header.css'%} ">
+       </head>
+    <body>
+             <header id="hdesign"  >
+           
+           <nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg navbar-dark" style=" background-color: #F8F9FA; ">
+               <div class="container">
+                       <a class="navbar-brand" href="index.html"><img src="{% static 'images/navlogo.png'%}" alt="vesit" height="60"></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar navbar-nav end" >
+      {% if user.is_authenticated %}
+       <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/event/approve"><b>Approve Event</b></a>
+      </li>
+          {% if user.is_staff %}
+              <a class="nav-link" id="linkfont" href="/createaevent"><b>Create a Event</b></a>
+          {% endif %}
+          <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/login/"><b>Registered Events</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/logout/"><b>Logout</b></a>
+      </li>
+          {% else %}
+       <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/about"><b>About</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/login/"><b>Login</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/register/"><b>Register</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href=""><b>Contact Us</b></a>
+      </li>
+      {% endif %}
+      </ul>
+  </div></div>
+      </nav>
+             </header><br>
+      {% if messages %}
+                {% for message in messages %}
+                <p class="a">
+                    <b>{{ message }}</b>
+                </p>
+                {% endfor %}
+            {% endif %}
+        <div class="container">
+            <div class="jumbotron margineventdetail">
+
+                <center>  <h1>{{ eventittle }}</h1> </center>
+                    <img src="{% static 'images/event.jpg'%}" height="250" width="300">
+
+                <h4>{{eventdescription  }}</h4>
+                <h6>{{ eventdate }}</h6>
+
+                <h6>{{ eventorganizer.name }} loremloremloremlorem</h6>
+                <center>
+               <a href="/event/{{ eventid }}/register" style="color:white;" >
+                    <button class="btn btn-info">Register For the Event</button> </a></center>
+         </div>
+            </div>
+        </div>
+    </body>
+</html>

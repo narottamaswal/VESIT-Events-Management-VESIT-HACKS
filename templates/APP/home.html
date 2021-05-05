@@ -1,0 +1,62 @@
+{% load static %}
+<html lang="en">
+<head>
+<title>{% block title %}JOBS{% endblock %}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+<div class="topnav">
+    {% if user.is_authenticated %}
+    {% if user.is_active %}
+  <a class="a1" href="/search">Search</a>
+  <a class="a1" href="/info">Info</a>
+  <a class="a2" href="/logout">Logout</a>
+  <a class="a2" href="/profile">Profile</a>
+  <a class="a2" >Welcome {{user.first_name}}&nbsp;<img align="center" src="{{ user.profile.image.url }}" style="margin-left: auto;
+  margin-right: auto;width:35px;height:25px;"></a>
+ {% endif %}
+    {% else %}
+ <a class="a1" href="#">Home</a>
+ <a class="a1" href="#">About</a>
+ <a class="a1" href="#">Contact</a>
+ <a class="a2" href="#">Login</a>
+ <a class="a2" href="#">Register</a>
+         {% endif %}
+  </div>
+
+
+<div class="search">
+Events Display
+    {% block form %}
+{% if user.is_authenticated %}
+    <form method="POST" action="/result">
+    {% csrf_token %}
+     {{ jobsearchform.jobtitle}}&nbsp;
+    {{ jobsearchform.location }}&nbsp;
+    {{ jobsearchform.companyname }}&nbsp;
+    {{ jobsearchform.skills }}<br>
+    <label><b>Experience</b></label>
+    {{ jobsearchform.experience }}&nbsp;
+        <label><b>Salary</b></label>
+    {{ jobsearchform.salary }}&nbsp;
+        <label><b>Jobtype</b></label>
+    {{ jobsearchform.jobtype }} &nbsp;   <label><b>Date posted</b></label>
+    {{ jobsearchform.dateposted }}&nbsp;
+        <label><b>No of jobs </b></label>
+    {{ jobsearchform.noofjobs }}<br>
+    <button class="btn" type="submit">SEARCH</button>
+    </form>
+    {% endif %}
+    {% endblock %}
+    </div>
+
+{% block col2 %}{% endblock %}
+
+
+</div>
+</body>
+</html>

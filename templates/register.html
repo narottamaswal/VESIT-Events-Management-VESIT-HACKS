@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Register</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/header.css'%} ">
+    </head>
+    <body id="bgimage">
+       <header id="hdesign"  >
+           
+           <nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg navbar-dark" style=" background-color: #F8F9FA; ">
+               <div class="container">
+                       <a class="navbar-brand" href="index.html"><img src="{% static 'images/navlogo.png'%}" alt="vesit" height="60"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+                   
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+     <ul class="navbar navbar-nav end" >
+      {% if user.is_authenticated %}
+       <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/event/approve"><b>Approve Event</b></a>
+      </li>
+          {% if user.is_staff %}
+              <a class="nav-link" id="linkfont" href="/createevent"><b>Create a Event</b></a>
+          {% endif %}
+          <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/login/"><b>Registered Events</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/logout/"><b>Logout</b></a>
+      </li>
+          {% else %}
+       <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/about"><b>About</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/login/"><b>Login</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/register/"><b>Register</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href=""><b>Contact Us</b></a>
+      </li>
+      {% endif %}
+      </ul>
+  </div></div>
+      </nav>
+      </header>
+
+        <div class="card">
+            <form method="POST" >
+                {% csrf_token %}
+                <h2 class="title">Sign Up</h2><br>
+      <p class="subtitle">Already have an account? <a href="/login/"> sign In</a></p>
+      <div class="email-login">
+         <label for="email"> <b>Email</b></label>
+                {{ form.email }}
+         <label for="first_name"><b>First Name</b></label>
+          {{ form.first_name }}
+          <label for="last_name"><b>Last name</b></label>
+         {{ form.last_name }}
+         <label for="psw"><b>Password</b></label>
+            {{ form.password1 }}
+         <label for="confirmpsw"><b>Confirm Password</b></label>
+          {{ form.password2 }}
+          {{ form.errors }}
+          <div class="form-group">
+         <label for="usertype"><b>User Type</b></label>
+              {{ temp.usertype.0 }}
+              {{ temp.usertype.1 }}<br>
+           <label for="dept"><b>Department</b></label>
+                {{ temp.dept }}<br>
+
+       <label for="dept"><b>Class</b></label>
+                {{ temp.class1 }}<br>
+       <label for="dept"><b>Rollno</b></label>
+                {{ temp.rollno }}<br>
+
+              <label for="usertype"><b>Is Head</b></label>
+                {{ temp.is_head.0 }}
+                {{ temp.is_head.1 }}<br>
+              <label for="usertype"><b>Head Of</b></label>
+              {{ temp.soc_head }}
+
+         </div>
+
+      </div>
+
+      <button type="submit" class="cta-btn">Log In</button>
+
+   </form>
+        </div>
+    </body>
+</html>

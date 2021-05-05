@@ -1,0 +1,129 @@
+{% load static %}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+.container {
+    opacity:0.8;
+    width:600px;
+   margin:0 auto;
+   margin-top:40px;
+    max-width: 100%;
+    padding: 20px;
+border:1px solid black;
+  background-color: white;
+}@media screen and (min-width: 400px){
+    .container{
+     max-width: 100%;
+   }
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=email]
+{ width: 100%;
+  padding: 10px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.btn2 {
+align:center;
+  background-color: red;
+  color: white;
+  padding: 12px ;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.btn:hover {
+  opacity: 2;
+}.btn2:hover {
+  opacity: 2;
+}
+body {
+  #background-image: url("{% static 'APP/IMAGES/download.jpg' %}");
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: black;
+}
+.topnav a.a1 {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.topnav a.a2 {
+  float: right;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.topnav a:hover {
+  background-color: white;
+  color: black;
+}}
+</style>
+</head>
+<body>
+<div class="topnav">
+  <a class="a1" href="#">Home</a>
+  <a class="a1" href="#">About</a>
+  <a class="a2" href="/register">Register</a>
+  <a class="a2" href="/login">Login</a>
+  </div>
+<div class="bg-img">
+  <form method="POST" class="container">
+         <b> <h1 style="color:black;" align="center"> Registration</h1></b>
+      {% csrf_token %}
+   {{ form.as_p }}
+      {{ temp.as_p }}
+      {{ form.errors.as_p }}
+    <button type="submit" class="btn">Register</button>&nbsp;
+      <button class="btn2"><a class="btn2" href="/login/">Already Registered ? Login Here</a></button>
+
+  </form>
+
+</div>
+
+</body>
+</html>

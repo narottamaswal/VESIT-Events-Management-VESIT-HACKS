@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Event List</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/header.css'%} ">
+    </head>
+    <body>
+        <header id="hdesign"  >
+           <nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg navbar-dark" style=" background-color: #F8F9FA; ">
+               <div class="container">
+                       <a class="navbar-brand" href="index.html"><img src="{% static 'images/navlogo.png'%}" alt="vesit" height="60"></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+       <ul class="navbar navbar-nav end" >
+      {% if user.is_authenticated %}
+
+          {% if user.is_staff %}
+               <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/event/approve"><b>Approve Event</b></a>
+      </li>
+              <a class="nav-link" id="linkfont" href="/createaevent"><b>Create a Event</b></a>
+          {% endif %}
+          <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/login/"><b>Registered Events</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/logout/"><b>Logout</b></a>
+      </li>
+          {% else %}
+       <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/about"><b>About</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/login/"><b>Login</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/register/"><b>Register</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href=""><b>Contact Us</b></a>
+      </li>
+      {% endif %}
+      </ul>
+  </div></div>
+      </nav>
+      </header>
+        <br> {% if isAllow %}
+                 <a style="color:white;"href="/createaevent">   <button class="btn btn-info">
+                    Create A Event
+                    </button></a>
+                {% endif %}
+                {% if messages %}
+                {% for message in messages %}
+                <p class="a">
+                    <b>{{ message }}</b>
+                </p>
+                {% endfor %}
+            {% endif %}
+
+        <div class="container">
+            <center><h1>UPCOMING EVENTS</h1></center>
+            <br>
+            <div style="float: left">Sort by:
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ eventsearchform.as_p }}
+                     <button type="submit" class="btn btn-info">
+                        Search
+                    </button>
+                </form>
+            </div>
+            <br><br><br>
+
+            <div class="row">
+                {% for event in events %}
+            <div class="col-lg-4 col-xl-4 jumbotron margineventlist">
+                <center>
+                    <img src="{% static 'images/event.jpg'%}" height="250" width="300">
+                    <br><br>
+                    <h2> <a href="/event/{{ event.id }}" >{{ event.title }}</a></h2></center><br>
+                <div><h6>Organizer: {{ event.organizer }}</h6></div><br>
+                <div style=""><h6>Time & Date:{{ event.date }}</h6></div><br>
+                <center>
+
+                   <a href="/event/{{ event.id }}/register" style="color:white;" >
+                    <button class="btn btn-info">Register For the Event</button> </a></center>
+
+                    </div>
+                {% endfor %}
+            </div>
+        {% if events.has_other_pages %}
+  <ul class="pagination">
+    {% if events.has_previous %}
+      <li>
+      <button class="btn btn-info">
+          <a style="color:white;" href="?page={{ events.previous_page_number }}">&laquo;</a>
+     </button> &nbsp;&nbsp;
+{#          <a href="?page={{ events.previous_page_number }}">&laquo;</a>#}
+      </li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>&nbsp;&nbsp;
+    {% endif %}
+    {% for i in events.paginator.page_range %}
+      {% if events.number == i %}
+        <li class="active">
+           &nbsp;&nbsp; <span>
+                <button class="btn btn-success">
+                    {{ i }}&nbsp;&nbsp;</button>
+
+            <span class="sr-only">(current)</span>&nbsp;&nbsp;</span>&nbsp;&nbsp;
+
+        </li>
+      {% else %}
+        <li>
+            <button class="btn btn-info">
+            <a style="color:white;" href="?page={{ i }}">{{ i }}</a>
+            </button></li>&nbsp;&nbsp;
+      {% endif %}
+    {% endfor %}
+    {% if events.has_next %}
+      <li>
+          <button class="btn btn-info">
+          <a style="color:white;" href="?page={{ events.next_page_number }}">&raquo;</a>
+           </button>
+
+      </li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+        </div>
+    </body>
+</html>

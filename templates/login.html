@@ -1,0 +1,67 @@
+{% load  static %}
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/header.css'%} ">
+    </head>
+    <body id="bgimage">
+                <header id="hdesign"  >
+           
+           <nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg navbar-dark" style=" background-color: #F8F9FA; ">
+               <div class="container">
+                       <a class="navbar-brand" href="index.html"><img src="{% static 'images/navlogo.png'%}" alt="vesit" height="60"></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar navbar-nav end" >
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="login.html"><b>Login</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href=""><b>Register</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href=""><b>Contact Us</b></a>
+      </li></ul>
+  </div></div>
+      </nav>
+      </header>
+        <div class="card">
+            <form method="POST">
+                {% csrf_token %}
+       <h2 class="title"> LOG IN</h2><br>
+      <p class="subtitle">Don't have an account? <a href="/register/"> sign Up</a></p>
+
+      <div class="email-login">
+         <label for="email"> <b>Email</b></label>
+         {{ form.Email }}
+         <label for="psw"><b>Password</b></label>
+         {{ form.password }}
+      </div>
+      <button type="submit" class="cta-btn">Log In</button>
+                {% if messages %}
+                {% for message in messages %}
+                <p class="a">
+                    <b>{{ message }}</b>
+                </p>
+                {% endfor %}
+            {% endif %}
+      <a class="forget-pass" href="/password-reset/">Forgot password?</a>
+   </form>
+</div>
+    </body>
+</html>

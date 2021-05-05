@@ -1,0 +1,133 @@
+{% load static %}
+<html>
+<head>
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+/* Add styles to the form container */
+.container {
+height:2000px;
+width:1000px;
+  position: absolute;
+  right: 1;
+  margin: 80px ;
+  margin-left: 850px ;
+  margin-right: 350px ;
+  max-width: 600px;
+  padding: 26px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=email]
+{ width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}.btn1 {
+  background-color:red;
+  color: white;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 2;
+}.btn1:hover {
+  opacity: 1;
+}
+body {
+  background-image: url("{% static 'images/bg3.jpg' %}");
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.sidenav {
+  height: 100%;
+  width: 190px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 18px; /* Increased text to enable scrolling */
+  padding: 12px 10px;
+}
+</style></head>
+<body>
+<div class="sidenav">
+  <a href="/search">Home</a>
+  <a href="/profile">Profile</a>
+    <a href="{% url 'change-password' %}">CHANGE PASSWORD</a>
+    <a href="/logout">Logout</a>
+
+</div>
+
+<div class="main">
+<div class="container">
+<form method="POST"  enctype="multipart/form-data">
+  {% csrf_token %}
+      <b><h1 align="center">Edit Your Profile</h1></b>
+        <img align="center" class="card-img-top " src="{{ user.profile.image.url }}"alt="Card image" style="margin-left: auto;
+  margin-right: auto;width:25%;height:6%">
+            {{ u_form.as_p }}
+            {{ p_form.as_p }}
+          <button class="btn" type="submit">SAVE CHANGES</button>
+
+</form>
+
+
+</div>
+</div>
+</body></html>

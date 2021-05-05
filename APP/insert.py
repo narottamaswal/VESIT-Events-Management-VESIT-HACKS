@@ -1,0 +1,20 @@
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('1', 'STUDENT', '0','1');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('2', 'COLLEGE','0','2');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('3', 'MCA_DEPT','0','3');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('4', 'CMPN_DEPT','0','4');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('5', 'INFT_DEPT','0','5');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('6', 'INST_DEPT','0','6');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('7', 'AIML_DEPT','0','7');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('8', 'CLASS_INCHARGE','0','8');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('9', 'CSI_SOCIETY','1','9');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('10', 'IEEE_SOCIETY','1','10');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('11', 'ISA_SOCIETY','1','11');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('12', 'ISTE_SOCIETY','1','12');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('13', 'VESLIT_COUNCIL','0','13');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('14', 'ECELL_COUNCIL','0','14');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('15', 'PHOTOCIRCLE_COUNCIL','0','15');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('16', 'SORT_COUNCIL','0','16');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('17', 'MUSIC_COUNCIL','0','17');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('18', 'SPORTS_COUNCIL','0','18');
+INSERT INTO `app_organizer` (`id`, `name`, `membership_required`) VALUES ('19', 'CULTURAL_COUNCIL','0','19');
+

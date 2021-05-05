@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    </head>
+    <body>
+     <header id="hdesign"  >
+
+           <nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg navbar-dark" style=" background-color: #F8F9FA; ">
+               <div class="container">
+                   <a class="navbar-brand" href="index.html"><img src="images/navlogo.png" alt="vesit" height="60"></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar navbar-nav end" >
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/login/"><b>Login</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href="/register/"><b>Register</b></a>
+      </li>
+      <li class="nav-item active">
+          <a class="nav-link" id="linkfont" href=""><b>Contact Us</b></a>
+      </li></ul>
+  </div></div>
+      </nav>
+             </header>
+
+
+ {% block container %}
+
+  <div class="container">
+            <center><h1>ADD AN EVENT</h1></center>
+            <div class="row">
+                <div class="col-lg-4 col-xl-4"></div>
+                <div class="col-lg-4 col-xl-4">
+    <form action="POST">
+
+      <div class="email-login">
+         <label for="eventname"> <b>Event Name</b></label>
+{{ form.title }}
+         <label for="eventdesciprtion"><b>Event Description</b></label>
+      {{ form.description }}
+         <textarea placeholder="Enter Event Description" name="eventdescription" required></textarea>
+
+         <label for="eventdate"><b>Event Date</b></label>
+         <input type="date" placeholder="Enter Event Date" name="eventdate" required>
+         <label for="eventtime"><b>Event Time</b></label>
+         <input type="time" placeholder="Select Event time" name="eventtime" required>
+         <label for="eventbaner"><b>Add Event Poster</b></label>
+         <input type="file" placeholder="Add Event Banner" name="eventbanner" >
+      </div>
+      <button class="event-btn">Add Event</button>
+   </form>
+                </div>
+            </div>
+         </div>
+    {% endblock container %}
+{#    </body>#}
+{#</html>#}

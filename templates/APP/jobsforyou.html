@@ -1,0 +1,85 @@
+{% extends 'search.html' %}
+{% block title %}result{% endblock %}
+{% load static %}
+{% block form %}<b><h1 align="center">Top Jobs</h1></b><br>
+<b><h1 align="center">Recommended For You</h1></b><br>{% endblock%}
+{% block col2 %}
+      {% for b in users %}<div class="search">
+    <h2> <b><a href="specificjob/{{b.id}}"> {{b.jobtitle}}</a></b>
+        {% ifequal b.jobportal "Indeed" %}
+        <img class="imga" src="{% static 'images/indeedlogo.png' %}" height="55" width="135"/> {% endifequal %}
+         {% ifequal b.jobportal "Linkedin" %}
+        <img class="imga" src="{% static 'images/linkedinlogo.png' %}" height="55" width="135"/> {% endifequal %}
+         {% ifequal b.jobportal "Freshersworld" %}
+        <img class="imga" src="{% static 'images/freshersworld.png' %}" height="55" width="145"/> {% endifequal %}
+         {% ifequal b.jobportal "Shine" %}
+        <img class="imga" src="{% static 'images/shinelogo.png' %}" height="55" width="135"/> {% endifequal %}
+        {% ifequal b.jobportal "Times Jobs" %}
+        <img class="imga" src="{% static 'images/timesjobslogo.png' %}" height="55" width="135"/> {% endifequal %}
+        {% ifequal b.jobportal "Monster" %}
+        <img class="imga" src="{% static 'images/monsterlogo.png' %}" height="55" width="135"/> {% endifequal %}
+    </h2>
+    <h3><b> {{b.companyname}} <br></b></h3>
+
+   <img src="{% static 'images/a.png' %}" height="25" width="25"/>   &nbsp;{{b.date}}<br>
+    <img src="{% static 'images/coin_salary.jpg' %}" height="25" width="25"/>
+{% if not b.maxsal %}
+    &nbsp;Salary Not Disclosed<br>
+    {% else %}
+        &nbsp;{{b.minsal}} - {{ b.maxsal }} a year<br>
+    {% endif%}
+    <img src="{% static 'images/location.png' %}" height="25" width="25"/>   &nbsp;{{b.location}}<br>
+   <img src="{% static 'images/exp.png' %}" height="25" width="25"/>   
+&nbsp;{{b.minexp}} - {{b.maxexp}} years <br>
+
+    <img src="{% static 'images/degree.png' %}" height="25" width="25}"/>
+
+
+ {% ifequal b.qualification "[]"%}
+         &nbsp;Qualification Not Defined<br>
+    {% else %}
+	  &nbsp;{{b.qualification }}<br>
+    {% endifequal %}
+
+  <img src="{% static 'images/download.png' %}" height="25" width="25"/>
+ {% ifequal b.skills "[]"%}
+         &nbsp;Skills Not Defined
+    {% else %}
+	{% if b.skills %}
+  &nbsp;{{b.skills}}
+{% endif%}
+    {% endifequal %}
+
+    {% if b.id in finalsaved %}
+    <a href="/specificjob/{{b.id}}/savedjobs/{{b.id}}"><button class="alreadysavedbtn">Already Saved</button></a><br>
+    {% else %}
+    <a href="/specificjob/{{b.id}}/savedjobs/{{b.id}}"><button class="btn2">Save Job</button></a><br>
+    {% endif %}
+   <img src="{% static 'images/worktime.png' %}" height="20" width="23"/> &nbsp; {{b.jobtype}}<br>
+
+
+
+</div>
+{% endfor %}
+{% if users.has_other_pages %}
+  <ul class="pagination">
+    {% if users.has_previous %}
+      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in users.paginator.page_range %}
+      {% if users.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+      <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+{% endblock %}
