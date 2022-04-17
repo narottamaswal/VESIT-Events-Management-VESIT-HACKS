@@ -1,3 +1,3 @@
 # VESIT-Events-Management-VESIT-HACKS
-A responsive website for events information and registration for different VESIT Societies and student bodies (developed for competition-VESIT Hacks)
-
+## Proposed and designed a system for events information and registration of all VESIT societies and committees.
+## Worked and managed a team of three developers and designers to build the application using different languages, and frameworks such as Django, JavaScript, Bootstrap and SASS.
